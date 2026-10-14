@@ -1,0 +1,145 @@
+/* A4 biodata page. Fixed 794 x 1123 CSS px (= 210 x 297 mm). Everything inside uses `em`, and the font size is
+   auto-reduced by BiodataPage when content would overflow, so long biodatas still fit on one page. */
+
+.bio-page {
+  position: relative;
+  width: 794px;
+  height: 1123px;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body-font), 'Mukta', 'Noto Sans Devanagari', sans-serif;
+  line-height: 1.45;
+  box-sizing: border-box;
+  text-align: left;
+}
+.bio-page *, .bio-page *::before, .bio-page *::after { box-sizing: border-box; }
+
+/* ---------- background patterns ---------- */
+.bio-pattern { position: absolute; inset: 0; pointer-events: none; }
+.bio-page[data-pattern='dots'] .bio-pattern {
+  background-image: radial-gradient(color-mix(in srgb, var(--primary) 16%, transparent) 1.4px, transparent 1.7px);
+  background-size: 16px 16px;
+}
+.bio-page[data-pattern='lattice'] .bio-pattern {
+  background-image:
+    linear-gradient(45deg, transparent 46%, color-mix(in srgb, var(--primary) 10%, transparent) 46%, color-mix(in srgb, var(--primary) 10%, transparent) 54%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, color-mix(in srgb, var(--primary) 10%, transparent) 46%, color-mix(in srgb, var(--primary) 10%, transparent) 54%, transparent 54%);
+  background-size: 30px 30px;
+}
+.bio-page[data-pattern='glow'] .bio-pattern {
+  background:
+    radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 50%);
+}
+.bio-page[data-pattern='blossom'] .bio-pattern {
+  background:
+    radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent) 32%, transparent) 0, transparent 24%),
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--primary) 18%, transparent) 0, transparent 22%),
+    radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--primary) 18%, transparent) 0, transparent 22%),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--accent) 32%, transparent) 0, transparent 24%);
+}
+
+/* ---------- borders ---------- */
+.bio-frame { position: absolute; inset: 14px; pointer-events: none; }
+.bio-page[data-border='single'] .bio-frame { border: 2px solid var(--primary); }
+.bio-page[data-border='double'] .bio-frame { border: 6px double var(--primary); }
+.bio-page[data-border='dashed'] .bio-frame { border: 2px dashed var(--primary); }
+.bio-page[data-border='thick'] .bio-frame {
+  border: 7px solid var(--primary);
+  box-shadow: inset 0 0 0 3px var(--bg), inset 0 0 0 4.5px var(--accent);
+}
+.bio-page[data-border='ornate'] .bio-frame {
+  border: 2px solid var(--primary);
+  box-shadow: inset 0 0 0 5px var(--bg), inset 0 0 0 6.5px var(--accent);
+}
+.bio-corner { position: absolute; width: 74px; height: 74px; color: var(--accent); }
+.bio-corner.tl { top: -3px; left: -3px; }
+.bio-corner.tr { top: -3px; right: -3px; transform: scaleX(-1); }
+.bio-corner.bl { bottom: -3px; left: -3px; transform: scaleY(-1); }
+.bio-corner.br { bottom: -3px; right: -3px; transform: scale(-1, -1); }
+
+/* ---------- decorations ---------- */
+.bio-toran { position: absolute; left: 16px; right: 16px; top: 16px; height: 58px; width: calc(100% - 32px); pointer-events: none; }
+.bio-mandala {
+  position: absolute; left: 50%; top: 50%; width: 600px; height: 600px; margin: -300px 0 0 -300px;
+  color: var(--primary); opacity: 0.07; pointer-events: none;
+}
+
+/* ---------- content area ---------- */
+.bio-inner { position: absolute; inset: 42px 46px; overflow: hidden; }
+.bio-page[data-decor='toran'] .bio-inner { top: 84px; }
+.bio-flow { width: 100%; }
+.bio-page[data-layout='sidebar'] .bio-flow { height: 100%; }
+
+/* ---------- header ---------- */
+.bio-head { text-align: center; margin-bottom: 0.9em; }
+.bio-blessing { font-family: var(--head-font), serif; font-weight: var(--head-bold); color: var(--primary); font-size: 1.05em; letter-spacing: 0.04em; }
+.bio-title {
+  font-family: var(--head-font), serif; font-weight: var(--head-bold); color: var(--primary);
+  font-size: 2.05em; line-height: 1.25; margin: 0.05em 0 0;
+}
+.bio-subtitle { font-size: 0.95em; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: var(--bold); }
+.bio-rule { display: flex; align-items: center; justify-content: center; gap: 0.6em; margin-top: 0.45em; color: var(--accent); }
+.bio-rule i { display: block; height: 2px; width: 6em; background: linear-gradient(to right, transparent, currentColor); }
+.bio-rule i:last-child { background: linear-gradient(to left, transparent, currentColor); }
+.bio-rule b { display: block; width: 0.6em; height: 0.6em; transform: rotate(45deg); background: currentColor; }
+
+/* ---------- sections ---------- */
+.bio-sec { margin-bottom: 0.95em; break-inside: avoid; page-break-inside: avoid; }
+.bio-sec-title {
+  font-family: var(--head-font), serif; font-weight: var(--head-bold); color: var(--primary);
+  font-size: 1.12em; line-height: 1.3; margin: 0 0 0.5em;
+}
+.bio-page[data-heading='band'] .bio-sec-title { background: var(--primary); color: var(--on-primary); padding: 0.2em 0.75em; border-radius: 0.3em; }
+.bio-page[data-heading='underline'] .bio-sec-title { border-bottom: 2px solid var(--accent); padding-bottom: 0.15em; }
+.bio-page[data-heading='ornament'] .bio-sec-title { display: flex; align-items: center; justify-content: center; gap: 0.7em; text-align: center; }
+.bio-page[data-heading='ornament'] .bio-sec-title::before,
+.bio-page[data-heading='ornament'] .bio-sec-title::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, transparent, var(--accent)); }
+.bio-page[data-heading='ornament'] .bio-sec-title::after { background: linear-gradient(to left, transparent, var(--accent)); }
+.bio-page[data-heading='pill'] .bio-sec-title { display: inline-block; background: var(--primary); color: var(--on-primary); padding: 0.12em 1.1em; border-radius: 999px; font-size: 1.04em; }
+.bio-page[data-heading='leftbar'] .bio-sec-title {
+  border-left: 0.38em solid var(--accent); padding: 0.14em 0.65em;
+  background: color-mix(in srgb, var(--primary) 11%, transparent);
+}
+
+.bio-fields { margin: 0; display: grid; row-gap: 0.28em; }
+.bio-frow { display: grid; grid-template-columns: var(--label-w, 11em) minmax(0, 1fr); column-gap: 0.55em; }
+.bio-frow dt { font-weight: var(--bold); position: relative; padding-right: 0.5em; color: color-mix(in srgb, var(--text) 80%, var(--primary)); }
+.bio-frow dt::after { content: ':'; position: absolute; right: 0; }
+.bio-frow dd { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+
+/* ---------- layouts ---------- */
+.bio-toprow { display: flex; gap: 1.3em; align-items: flex-start; margin-bottom: 0.2em; }
+.bio-toprow > .bio-sec { flex: 1; min-width: 0; }
+.bio-photo-center { display: flex; justify-content: center; margin: 0.2em 0 1em; }
+
+.bio-page[data-layout='twoColumn'] { --label-w: 7.6em; }
+.bio-cols { column-count: 2; column-gap: 1.7em; column-rule: 1px solid color-mix(in srgb, var(--primary) 25%, transparent); }
+.bio-cols .bio-sec { margin-bottom: 0.85em; }
+.bio-page[data-layout='twoColumn'] .bio-toprow .bio-frow { grid-template-columns: 9.5em minmax(0, 1fr); }
+
+.bio-grid-side { display: grid; grid-template-columns: 31% minmax(0, 1fr); gap: 1.6em; height: 100%; }
+.bio-side {
+  background: color-mix(in srgb, var(--primary) 9%, transparent);
+  border-radius: 0.7em; padding: 1.1em 1em; display: flex; flex-direction: column; align-items: stretch;
+}
+.bio-side .bio-photo { align-self: center; margin-bottom: 1.1em; }
+.bio-side .bio-frow { grid-template-columns: 1fr; row-gap: 0; }
+.bio-side .bio-frow dt { font-size: 0.82em; text-transform: uppercase; letter-spacing: 0.03em; color: var(--primary); padding: 0; }
+.bio-side .bio-frow dt::after { display: none; }
+.bio-side .bio-fields { row-gap: 0.55em; }
+.bio-side .bio-sec-title { font-size: 1.02em; }
+.bio-page[data-layout='sidebar'] .bio-head { text-align: left; }
+.bio-page[data-layout='sidebar'] .bio-rule { justify-content: flex-start; }
+.bio-page[data-layout='sidebar'] .bio-title { font-size: 1.85em; }
+.bio-page[data-layout='sidebar'] { --label-w: 9.5em; }
+
+/* ---------- photo ---------- */
+.bio-photo { flex: none; width: var(--photo-w); overflow: hidden; background: color-mix(in srgb, var(--primary) 12%, transparent); }
+.bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bio-photo[data-shape='rounded'] { aspect-ratio: 3 / 4; border-radius: 0.7em; }
+.bio-photo[data-shape='arch'] { aspect-ratio: 3 / 4; border-radius: 999px 999px 0.5em 0.5em; }
+.bio-photo[data-shape='circle'] { aspect-ratio: 1; border-radius: 50%; }
+.bio-photo[data-shape='square'] { aspect-ratio: 1; border-radius: 0.2em; }
+.bio-photo[data-border='true'] { border: 0.22em solid var(--accent); box-shadow: 0 0 0 0.14em var(--primary); }

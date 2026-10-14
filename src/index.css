@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { background: #fffaf2; }
+body { font-family: 'Mukta', 'Noto Sans Devanagari', system-ui, sans-serif; color: #2a1d17; -webkit-tap-highlight-color: transparent; }
+
+@layer components {
+  .field-input {
+    @apply w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-[15px] text-stone-900 placeholder:text-stone-400 outline-none transition;
+  }
+  .field-input:focus { @apply border-maroon-500 ring-2 ring-maroon-200; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[15px] font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply bg-maroon-700 text-white shadow-soft hover:bg-maroon-800; }
+  .btn-gold { @apply bg-amber-500 text-stone-900 shadow-soft hover:bg-amber-400; }
+  .btn-ghost { @apply border border-stone-300 bg-white text-stone-700 hover:bg-stone-50; }
+  .btn-danger { @apply bg-red-600 text-white hover:bg-red-700; }
+  .card { @apply rounded-2xl border border-amber-900/10 bg-white shadow-sm; }
+}
+
+/* ---------- Print: show only the A4 biodata ---------- */
+/* The hidden export/print copy lives off-screen on screen and becomes the only visible thing in print. */
+#print-root { position: fixed; left: -10000px; top: 0; pointer-events: none; }
+
+@page { size: A4 portrait; margin: 0; }
+
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; width: 210mm; }
+  #root { display: none !important; }
+  #print-root { position: static !important; left: auto !important; pointer-events: auto; }
+  #print-root .bio-page { width: 210mm !important; height: 296.5mm !important; break-after: avoid; page-break-after: avoid; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}

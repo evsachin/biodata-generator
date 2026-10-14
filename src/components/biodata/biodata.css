@@ -1,0 +1,321 @@
+/* ==========================================================================
+   Biodata page styles (plain CSS, not Tailwind) – this exact markup is shown in the preview,
+   printed, and rasterised for PDF/PNG, so it must not depend on app-level styles.
+   Everything is sized in `em` relative to --fs so the auto-fit step can shrink it as one unit.
+   ========================================================================== */
+
+.bd-page {
+  position: relative;
+  width: 794px;
+  height: 1123px;
+  overflow: hidden;
+  background: var(--bd-bg);
+  color: var(--bd-text);
+  font-family: var(--bd-body);
+  font-size: var(--fs, 14px);
+  line-height: 1.5;
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  text-align: left;
+}
+.bd-page *,
+.bd-page *::before,
+.bd-page *::after {
+  box-sizing: border-box;
+}
+.bd-inner {
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- borders ---------- */
+.bd-frame {
+  position: absolute;
+  pointer-events: none;
+}
+.bd-strip {
+  position: absolute;
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+.bd-corner {
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.bd-toran {
+  position: absolute;
+  height: 46px;
+  background-repeat: repeat-x;
+  background-size: 46px 46px;
+  pointer-events: none;
+}
+
+/* ---------- header ---------- */
+.bd-header {
+  text-align: center;
+  flex: none;
+  margin-bottom: 0.9em;
+}
+.bd-inner > * { flex-shrink: 0; }
+.bd-invocation {
+  font-family: var(--bd-head);
+  color: var(--bd-accent);
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.15em;
+}
+.bd-title {
+  font-family: var(--bd-head);
+  color: var(--bd-accent);
+  font-size: 2.15em;
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0;
+}
+.bd-title small {
+  display: block;
+  font-family: var(--bd-body);
+  font-size: 0.42em;
+  font-weight: 500;
+  color: var(--bd-text);
+  opacity: 0.7;
+  letter-spacing: 0.12em;
+  margin-top: 0.1em;
+}
+.bd-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0.55em auto 0;
+  width: 62%;
+}
+.bd-divider::before,
+.bd-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bd-zari);
+}
+.bd-dia {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--bd-zari);
+  transform: rotate(45deg);
+  flex: none;
+}
+
+/* ---------- photo ---------- */
+.bd-photo {
+  flex: none;
+  position: relative;
+  padding: 0.3em;
+  background: var(--bd-bg);
+  border: 2px solid var(--bd-accent);
+  outline: 1px solid var(--bd-zari);
+  outline-offset: 2px;
+}
+.bd-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bd-ghost { width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.9; }
+.bd-photo--rect { border-radius: 2px; }
+.bd-photo--rect .bd-ghost { border-radius: 1px; }
+.bd-photo--rounded .bd-ghost { border-radius: 0.65em; }
+.bd-photo--circle .bd-ghost { border-radius: 999px; }
+.bd-photo--arch .bd-ghost { border-radius: 999px 999px 0.3em 0.3em; }
+.bd-photo--rect img { border-radius: 1px; }
+.bd-photo--rounded { border-radius: 0.9em; }
+.bd-photo--rounded img { border-radius: 0.65em; }
+.bd-photo--circle { border-radius: 999px; padding: 0.25em; }
+.bd-photo--circle img { border-radius: 999px; }
+.bd-photo--arch { border-radius: 999px 999px 0.5em 0.5em; }
+.bd-photo--arch img { border-radius: 999px 999px 0.3em 0.3em; }
+.bd-photo--s { width: 8.4em; height: 10.8em; }
+.bd-photo--m { width: 10.4em; height: 13.4em; }
+.bd-photo--l { width: 12.6em; height: 16.2em; }
+.bd-photo--circle.bd-photo--s { height: 8.4em; }
+.bd-photo--circle.bd-photo--m { height: 10.4em; }
+.bd-photo--circle.bd-photo--l { height: 12.6em; }
+
+/* ---------- section headings ---------- */
+.bd-sec { margin-bottom: 0.95em; }
+.bd-sec:last-child { margin-bottom: 0; }
+.bd-h {
+  font-family: var(--bd-head);
+  color: var(--bd-accent);
+  font-size: 1.12em;
+  line-height: 1.3;
+  font-weight: 400;
+  margin: 0 0 0.45em;
+}
+.bd-h small {
+  font-family: var(--bd-body);
+  font-size: 0.72em;
+  font-weight: 500;
+  opacity: 0.75;
+  margin-left: 0.5em;
+}
+.bd-h--band {
+  background: var(--bd-accent);
+  color: var(--bd-on-accent);
+  padding: 0.22em 0.75em;
+  border-radius: 2px;
+  box-shadow: inset 0 -2px 0 var(--bd-zari);
+}
+.bd-h--underline {
+  padding-bottom: 0.18em;
+  border-bottom: 2px solid var(--bd-zari);
+  position: relative;
+}
+.bd-h--underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 3.2em;
+  height: 2px;
+  background: var(--bd-accent);
+}
+.bd-h--ribbon {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.bd-h--ribbon > span {
+  background: var(--bd-accent);
+  color: var(--bd-on-accent);
+  padding: 0.2em 1.7em 0.2em 0.8em;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.8em) 50%, 100% 100%, 0 100%);
+}
+.bd-h--ribbon::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bd-zari);
+}
+.bd-h--ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  text-align: center;
+}
+.bd-h--ornament::before,
+.bd-h--ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--bd-zari);
+}
+.bd-h--pill {
+  display: inline-block;
+  background: color-mix(in srgb, var(--bd-accent) 12%, transparent);
+  color: var(--bd-accent);
+  border: 1px solid color-mix(in srgb, var(--bd-accent) 45%, transparent);
+  border-radius: 999px;
+  padding: 0.12em 0.95em;
+}
+.bd-h--plain {
+  border-left: 0.28em solid var(--bd-zari);
+  padding-left: 0.55em;
+}
+
+/* ---------- rows ---------- */
+.bd-rows {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 1.6em;
+}
+.bd-rows--2 { grid-template-columns: 1fr 1fr; }
+.bd-row {
+  display: grid;
+  grid-template-columns: var(--bd-lblw, 8.6em) 0.9em 1fr;
+  align-items: start;
+  padding: 0.2em 0.35em;
+  min-height: 1.9em;
+}
+.bd-row--wide { grid-column: 1 / -1; }
+.bd-lbl {
+  font-weight: 600;
+  line-height: 1.35;
+  padding-top: 0.05em;
+}
+.bd-lbl small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.8em;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+.bd-sep { text-align: center; opacity: 0.6; }
+.bd-val { overflow-wrap: anywhere; white-space: pre-line; }
+.bd-rows--lines .bd-row { border-bottom: 1px dotted color-mix(in srgb, var(--bd-zari) 75%, transparent); }
+.bd-rows--zebra .bd-row:nth-child(odd) { background: color-mix(in srgb, var(--bd-accent) 7%, transparent); }
+
+/* ---------- layouts ---------- */
+.bd-head-row { display: flex; align-items: center; gap: 1.2em; margin-bottom: 0.9em; }
+.bd-head-row > .bd-header { flex: 1; margin-bottom: 0; }
+.bd-center-photo { display: flex; justify-content: center; margin: 0.9em 0 1em; }
+
+.bd-cols { column-count: 2; column-gap: 1.1em; }
+.bd-card {
+  break-inside: avoid;
+  border: 1px solid color-mix(in srgb, var(--bd-accent) 40%, transparent);
+  border-radius: 0.6em;
+  padding: 0.65em 0.8em 0.55em;
+  margin: 0 0 0.85em;
+  background: color-mix(in srgb, var(--bd-accent) 3%, var(--bd-bg));
+}
+.bd-card .bd-row { --bd-lblw: 6.4em; padding-left: 0; padding-right: 0; }
+
+.bd-sidebar-wrap { display: flex; flex: 1; min-height: 0; }
+.bd-side {
+  width: 31%;
+  flex: none;
+  background: var(--bd-accent);
+  color: var(--bd-on-accent);
+  padding: 1.3em 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em;
+}
+.bd-side .bd-photo { margin: 0 auto; }
+.bd-h--side {
+  color: var(--bd-on-accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--bd-on-accent) 45%, transparent);
+  padding: 0 0 0.2em;
+  font-size: 1.02em;
+}
+.bd-side .bd-row {
+  display: block;
+  border: 0;
+  background: none;
+  padding: 0.18em 0;
+  min-height: 0;
+}
+.bd-side .bd-lbl { font-weight: 500; font-size: 0.82em; opacity: 0.8; }
+.bd-side .bd-lbl small { display: inline; margin-left: 0.3em; }
+.bd-side .bd-sep { display: none; }
+.bd-side .bd-val { font-weight: 600; }
+.bd-main { flex: 1; min-width: 0; padding: 0 0 0 1.4em; display: flex; flex-direction: column; }
+.bd-main .bd-header { text-align: left; margin-bottom: 0.9em; }
+.bd-main .bd-divider { margin-left: 0; width: 70%; }
+
+.bd-empty-note {
+  text-align: center;
+  opacity: 0.55;
+  padding: 3em 1em;
+  font-size: 1.1em;
+}

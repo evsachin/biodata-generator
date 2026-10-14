@@ -1,0 +1,34 @@
+// Fonts are bundled locally (not loaded from Google) so that PDF / image export can embed them reliably.
+// Only the Devanagari + Latin subsets, weights 400 and 700, are imported.
+import '@fontsource/mukta/devanagari-400.css';
+import '@fontsource/mukta/devanagari-700.css';
+import '@fontsource/mukta/latin-400.css';
+import '@fontsource/mukta/latin-700.css';
+import '@fontsource/hind/devanagari-400.css';
+import '@fontsource/hind/devanagari-700.css';
+import '@fontsource/hind/latin-400.css';
+import '@fontsource/hind/latin-700.css';
+import '@fontsource/noto-sans-devanagari/devanagari-400.css';
+import '@fontsource/noto-sans-devanagari/devanagari-700.css';
+import '@fontsource/noto-sans-devanagari/latin-400.css';
+import '@fontsource/noto-sans-devanagari/latin-700.css';
+import '@fontsource/martel/devanagari-400.css';
+import '@fontsource/martel/devanagari-700.css';
+import '@fontsource/martel/latin-400.css';
+import '@fontsource/martel/latin-700.css';
+import '@fontsource/laila/devanagari-400.css';
+import '@fontsource/laila/devanagari-700.css';
+import '@fontsource/laila/latin-400.css';
+import '@fontsource/laila/latin-700.css';
+import '@fontsource/kalam/devanagari-400.css';
+import '@fontsource/kalam/devanagari-700.css';
+import '@fontsource/kalam/latin-400.css';
+import '@fontsource/kalam/latin-700.css';
+import '@fontsource/amita/devanagari-400.css';
+import '@fontsource/amita/devanagari-700.css';
+import '@fontsource/amita/latin-400.css';
+import '@fontsource/amita/latin-700.css';
+import '@fontsource/tiro-devanagari-marathi/devanagari-400.css';
+import '@fontsource/tiro-devanagari-marathi/latin-400.css';
+import '@fontsource/yatra-one/devanagari-400.css';
+import '@fontsource/yatra-one/latin-400.css';
